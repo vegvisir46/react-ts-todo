@@ -1,10 +1,12 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
+import {Box, Typography} from "@mui/material";
 
 export const Header = () => {
   return (
-    <Typography sx={{ fontSize: 35 }} variant="h1" component="h1" gutterBottom>
-      Todo list
-    </Typography>
+    <Box textAlign='left'>
+      <Typography sx={{ fontSize: 35 }} variant="h1" component="h1" gutterBottom>
+        Todo list
+      </Typography>
+    </Box>
   )
 };

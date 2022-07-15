@@ -18,19 +18,27 @@ export const Panel = () => {
 
   return (
     <Paper elevation={2}
-           sx={{padding: '15px 30px',
+           sx={{width: '100%',
+                padding: '25px 30px',
                 borderRadius: 2,
                 display: 'flex',
-
+                justifyContent: 'space-between',
                 alignContent: 'center',
                 gap: 2 }}>
       <TextField value={inputValue}
                  onChange={onChange}
-                 label='Todo name'/>
+                 name='name'
+                 label='Name'
+                 sx={{width: '300px'}}/>
+      <TextField value={inputValue}
+                 onChange={onChange}
+                 name='description'
+                 label='Description'
+                 sx={{width: '300px'}}/>
       <Button startIcon={<AddIcon />}
               onClick={onAddClick}
               variant="outlined">
-        Add Todo
+        Todo
       </Button>
     </Paper>
   )

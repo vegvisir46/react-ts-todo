@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Box display='flex' flexDirection='column'>
+      <Box display='flex' flexDirection='column' width='500px'>
         <Header/>
         <Panel/>
         <TodoList/>
