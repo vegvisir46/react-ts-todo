@@ -1,23 +1,24 @@
 import React from 'react';
 import {Box} from "@mui/material";
+import {TodoItem} from "./TodoItem/TodoItem";
+import type {Todo} from "../../App";
 
-const todoList = [
-  {id: 1, description: 'test', checked: false},
-  {id: 2, description: 'test', checked: false},
-  {
-    id: 3,
-    description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-    checked: false
-  }
-]
-export const TodoList = () => {
+interface TodoListProps {
+  todoList: Todo[];
+  onDeleteTodo: (id: Todo['id']) => void;
+  onCheckTodo: (id: Todo['id']) => void;
+}
+
+export const TodoList: React.FC<TodoListProps> = ({todoList, onDeleteTodo, onCheckTodo}) => {
   return (
     <Box>{
       todoList.map((todo) => {
         return (
-          <Box>{todo.description}</Box>
+          <TodoItem todo={todo} onDeleteTodo={onDeleteTodo} onCheckTodo={onCheckTodo}/>
         )
       })
-    }</Box>
+    }
+
+    </Box>
   )
 };
