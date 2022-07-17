@@ -1,6 +1,6 @@
 import React from 'react';
 import {IconButton, Box, Button, Paper, Typography} from "@mui/material";
-import {Delete as DeleteIcon} from '@mui/icons-material';
+import {Delete as DeleteIcon, Edit as EditIcon} from '@mui/icons-material';
 
 import type {Todo} from "../../../App";
 
@@ -26,8 +26,8 @@ export const TodoItem: React.FC<TodoItemProps> = ({todo, onDeleteTodo, onCheckTo
              opacity: todo.checked ? 0.5 : 1,
              transition: 'all .3s ease'
            }}>
-      <Box textAlign='left'>
-        <Typography sx={{cursor: 'pointer', textDecorationLine: todo.checked ? 'line-through' : 'none'}}
+      <Box textAlign='left' width='80%'>
+        <Typography sx={{cursor: 'pointer', wordBreak: 'break-all',textDecorationLine: todo.checked ? 'line-through' : 'none'}}
                     variant="h5"
                     component="h5"
                     gutterBottom
@@ -43,7 +43,9 @@ export const TodoItem: React.FC<TodoItemProps> = ({todo, onDeleteTodo, onCheckTo
         <IconButton onClick={() => onDeleteTodo(todo.id)} aria-label='delete' color='error'>
           <DeleteIcon/>
         </IconButton>
-        {/*<Button>b2</Button>*/}
+        <IconButton aria-label='delete' color='primary'>
+          <EditIcon/>
+        </IconButton>
       </Box>
 
     </Paper>
