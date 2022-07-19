@@ -12,6 +12,7 @@ export type Todo = {
 };
 
 function App() {
+  const [editTodoId, setEditTodoId] = React.useState<number | null>(null);
   const [todoList, setTodoList] = React.useState([
     {id: 1, name: 'task 1', description: 'test', checked: true},
     {id: 2, name: 'task 2', description: 'test', checked: false},
@@ -27,6 +28,10 @@ function App() {
       ...todoList,
       {id: todoList[todoList.length - 1].id + 1, description, name, checked: false}
     ])
+  };
+
+  const onEdit = (id: Todo['id']) => {
+    setEditTodoId(id);
   };
 
   const onDeleteTodo = (id: Todo['id']) => {
@@ -47,7 +52,11 @@ function App() {
       <Box display='flex' flexDirection='column' width='500px'>
         <Header/>
         <Panel onAddTodo={onAddTodo}/>
-        <TodoList todoList={todoList} onDeleteTodo={onDeleteTodo} onCheckTodo={onCheckTodo}/>
+        <TodoList
+          todoList={todoList}
+          onDeleteTodo={onDeleteTodo}
+          onCheckTodo={onCheckTodo}
+          onEdit={onEdit}/>
       </Box>
     </div>
   );

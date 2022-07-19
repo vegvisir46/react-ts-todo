@@ -7,14 +7,20 @@ interface TodoListProps {
   todoList: Todo[];
   onDeleteTodo: (id: Todo['id']) => void;
   onCheckTodo: (id: Todo['id']) => void;
+  onEdit: (id: Todo['id']) => void;
 }
 
-export const TodoList: React.FC<TodoListProps> = ({todoList, onDeleteTodo, onCheckTodo}) => {
+export const TodoList: React.FC<TodoListProps> = ({todoList, onDeleteTodo, onCheckTodo, onEdit}) => {
   return (
     <Box>{
       todoList.map((todo) => {
         return (
-          <TodoItem todo={todo} onDeleteTodo={onDeleteTodo} onCheckTodo={onCheckTodo}/>
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onDeleteTodo={onDeleteTodo}
+            onCheckTodo={onCheckTodo}
+            onEdit={onEdit}/>
         )
       })
     }
