@@ -1,56 +1,57 @@
 import React from 'react';
-import {Add as AddIcon} from '@mui/icons-material';
-import {Button, Paper, TextField} from '@mui/material';
+import {Button, Paper, TextField} from "@mui/material";
+import {Edit as EditIcon} from '@mui/icons-material';
 
-import type {Todo} from "../../App";
+import type {Todo} from "../../../App";
 
-const DEFAULT_TODO = {name: '', description: ''};
 
-interface PanelProps {
-  onAddTodo: ({name, description}: Omit<Todo, 'id' | 'checked'>) => void;
+interface EditTodoItemProps {
+  todo: Todo;
+  onChangeTodo: ({name, description}: Omit<Todo, 'id' | 'checked'>) => void;
 }
 
-export const Panel: React.FC<PanelProps> = ({onAddTodo}) => {
-  const [todo, setTodo] = React.useState(DEFAULT_TODO);
+export const EditTodoItem: React.FC<EditTodoItemProps> = ({todo, onChangeTodo}) => {
+  const [editTodo, setEditTodo] = React.useState({name: todo.name, description: todo.description})
 
   const onAddClick = () => {
-    onAddTodo(todo);
-    setTodo(DEFAULT_TODO);
+    onChangeTodo(editTodo);
   }
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {value, name} = event.target;
-    console.log('@@@', value, name);
-    setTodo({...todo, [name]: value});
+    setEditTodo({...todo, [name]: value});
   }
-
 
   return (
     <Paper elevation={2}
            sx={{
+             marginTop: '15px',
              width: '100%',
-             padding: '25px 30px',
+             padding: '10px 28px',
              borderRadius: 2,
              display: 'flex',
              justifyContent: 'space-between',
              alignContent: 'center',
-             gap: 2
+             gap: 2,
+             transition: 'all .3s ease'
            }}>
-      <TextField value={todo.name}
+
+      <TextField value={editTodo.name}
                  onChange={onChange}
                  name='name'
                  label='Name'
                  sx={{width: '300px'}}/>
-      <TextField value={todo.description}
+      <TextField value={editTodo.description}
                  onChange={onChange}
                  name='description'
                  label='Description'
                  sx={{width: '300px'}}/>
-      <Button startIcon={<AddIcon/>}
+      <Button startIcon={<EditIcon/>}
               onClick={onAddClick}
               variant="outlined">
-        Todo
+        EDIT
       </Button>
+
     </Paper>
-  )
+  );
 };

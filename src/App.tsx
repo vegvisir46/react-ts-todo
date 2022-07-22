@@ -44,7 +44,17 @@ function App() {
         return {...todo, checked: !todo.checked}
       }
       return todo
-    }))
+    }));
+  };
+
+  const onChangeTodo = ({name, description}: Omit<Todo, 'id' | 'checked'>) => {
+    setTodoList(todoList.map(todo => {
+      if (todo.id === editTodoId) {
+        return {...todo, name, description}
+      }
+      return todo
+    }));
+    setEditTodoId(null);
   };
 
   return (
@@ -53,10 +63,12 @@ function App() {
         <Header/>
         <Panel onAddTodo={onAddTodo}/>
         <TodoList
+          editTodoId={editTodoId}
           todoList={todoList}
           onDeleteTodo={onDeleteTodo}
           onCheckTodo={onCheckTodo}
-          onEdit={onEdit}/>
+          onEdit={onEdit}
+          onChangeTodo={onChangeTodo}/>
       </Box>
     </div>
   );
