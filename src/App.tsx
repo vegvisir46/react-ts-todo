@@ -14,11 +14,16 @@ export type Todo = {
 function App() {
   const [editTodoId, setEditTodoId] = React.useState<number | null>(null);
   const [todoList, setTodoList] = React.useState([
-    {id: 1, name: 'task 1', description: 'test', checked: true},
-    {id: 2, name: 'task 2', description: 'test', checked: false},
+    {id: 1, name: 'Sleep', description: 'You need some sleep...', checked: true},
+    {id: 2, name: 'Eat', description: '...then eat...', checked: false},
     {
-      id: 3, name: 'task 3',
-      description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
+      id: 3, name: 'Code',
+      description: '...then code... ',
+      checked: false
+    },
+    {
+      id: 4, name: 'Repeat',
+      description: '...and repeat',
       checked: false
     }
   ]);
